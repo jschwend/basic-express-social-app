@@ -1,3 +1,10 @@
 {{#> layout }}
   <h1>Welcome to the app</h1>
+  {{#if user}}
+    <p>Hello {{ user.username }}</p>
+    <a href="/logout">Logout</a>
+  {{else}}
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  {{/if}}
 {{/layout}}
