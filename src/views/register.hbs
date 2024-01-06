@@ -16,5 +16,10 @@
     <div>
       <input type="submit" value="Register" />
     </div>
+    {{#if error}}
+      <div>
+        {{ error }}
+      </div>
+    {{/if}}
   </form>
 {{/layout}}

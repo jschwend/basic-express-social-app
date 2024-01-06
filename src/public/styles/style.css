@@ -17,3 +17,7 @@ body {
   background-color: var(--color-dark);
   color: var(--color-white);
 }
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}

@@ -2,6 +2,7 @@ import express, { Express, NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import hbs from "hbs";
+import flash from "express-flash";
 import authRouter from "./routers/auth";
 import { NotFoundError } from "./errors";
 import { runMigrations } from "./db";
@@ -31,6 +32,7 @@ app.use(
     secret: "keyboard cat",
   })
 );
+app.use(flash());
 
 app.get("/", (req: Request, res: Response) => {
   console.log(req.session);

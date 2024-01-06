@@ -16,7 +16,7 @@ export interface UserWithoutPassword {
 export async function createUser(username: string, password: string) {
   const userExists = db
     .prepare("SELECT * FROM users WHERE username = ?")
-    .get(username);
+    .get(username.toLowerCase());
 
   if (userExists) {
     throw new Error("User already exists");
@@ -27,7 +27,7 @@ export async function createUser(username: string, password: string) {
 
   db.prepare(
     "INSERT INTO users (uuid, username, password) VALUES (?, ?, ?)"
-  ).run(uuid, username, hashedPassword);
+  ).run(uuid, username.toLowerCase(), hashedPassword);
 
   const user = db
     .prepare("SELECT * FROM users WHERE uuid = ?")
