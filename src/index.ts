@@ -27,7 +27,7 @@ app.use(express.static("src/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set("trust proxy", 1); // trust first proxy
+app.set("trust proxy", 1);
 app.use(cookieParser());
 app.use(
   session({

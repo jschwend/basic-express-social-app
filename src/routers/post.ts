@@ -3,10 +3,6 @@ import { createPost } from "../services/post";
 
 const router = express.Router();
 
-router.get("/post", (req: Request, res: Response) => {
-  res.render("post");
-});
-
 router.post("/post", async (req: Request, res: Response) => {
   if (!req.session.user) {
     res.redirect("/login");
