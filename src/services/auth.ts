@@ -76,3 +76,18 @@ export async function checkPassword(
 
   return isMatch;
 }
+
+export async function getUserByUuid(uuid: string) {
+  const user = db
+    .prepare("SELECT * FROM users WHERE uuid = ?")
+    .get(uuid) as User;
+
+  if (!user) {
+    return null;
+  }
+
+  return {
+    uuid: user.uuid,
+    username: user.username,
+  };
+}

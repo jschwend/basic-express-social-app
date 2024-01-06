@@ -1,9 +1,15 @@
 import express, { Request, Response } from "express";
-import { createUser, loginUser } from "../services/auth";
+import { createUser, getUserByUuid, loginUser } from "../services/auth";
+import { NotFoundError } from "../errors";
+import { getPostsForUser } from "../services/post";
 
 const router = express.Router();
 
 router.get("/register", (req: Request, res: Response) => {
+  if (req.session.user) {
+    res.redirect("/");
+    return;
+  }
   res.render("register", { error: req.flash("error") });
 });
 
@@ -23,7 +29,7 @@ router.post("/register", async (req: Request, res: Response) => {
   }
 
   // min 8 chars, 1 uppercase, 1 lowercase, 1 number
-  const passwordRegex = /^(?=.*[a-z])(?=q.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/gm;
 
   if (!passwordRegex.test(password)) {
     req.flash(
@@ -47,6 +53,10 @@ router.post("/register", async (req: Request, res: Response) => {
 });
 
 router.get("/login", (req: Request, res: Response) => {
+  if (req.session.user) {
+    res.redirect("/");
+    return;
+  }
   res.render("login", { error: req.flash("error") });
 });
 
@@ -80,6 +90,18 @@ router.get("/logout", (req: Request, res: Response) => {
 
     res.redirect("/");
   });
+});
+
+router.get("/profile/:id", async (req: Request, res: Response) => {
+  const user = await getUserByUuid(req.params.id);
+
+  if (!user) {
+    throw new NotFoundError("User not found");
+  }
+
+  const posts = await getPostsForUser(user.uuid);
+
+  res.render("profile", { user, posts });
 });
 
 export default router;

@@ -1,11 +1,6 @@
 {{#> layout }}
   {{#if user}}
-    {{> createPost }}
-
-  {{else}}
-    <h2>Welcome to the app</h2>
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+    <h2>{{ user.username }}'s Profile</h2>
   {{/if}}
 
   <h3>Posts</h3>
@@ -14,9 +9,7 @@
       <div class="post">
         <p class="post__content">{{ content }}</p>
         <div class="post__footer">
-          Posted by 
-          <a class="post__user" href="/profile/{{userUuid}}">{{ username }}</a>
-          {{ createdAtRelative }}
+          Posted {{ createdAtRelative }}
         </div>
       </div>
     {{/each}}

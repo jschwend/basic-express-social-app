@@ -1,0 +1,19 @@
+<form action="/post" method="post" class="post__form">
+  <label for="content" class="post__form__label">
+    <input
+      type="text"
+      name="content"
+      id="content"
+      placeholder="Make a post!"
+      class="post__form__input"
+    />
+  </label>
+  <div>
+    <button type="submit" class="post__form__button">Post</button>
+  </div>
+  {{#if createPostError}}
+    <div>
+      {{createPostError}}
+    </div>
+  {{/if}}
+</form>

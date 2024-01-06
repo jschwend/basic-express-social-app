@@ -4,9 +4,11 @@ import session from "express-session";
 import hbs from "hbs";
 import flash from "express-flash";
 import authRouter from "./routers/auth";
+import postRouter from "./routers/post";
 import { NotFoundError } from "./errors";
 import { runMigrations } from "./db";
 import type { UserWithoutPassword } from "./services/auth";
+import { getPostsWithUsers } from "./services/post";
 
 declare module "express-session" {
   interface SessionData {
@@ -34,12 +36,18 @@ app.use(
 );
 app.use(flash());
 
-app.get("/", (req: Request, res: Response) => {
-  console.log(req.session);
-  res.render("index", { user: req.session.user });
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
+
+app.get("/", async (req: Request, res: Response) => {
+  const posts = await getPostsWithUsers();
+  res.render("index", { posts });
 });
 
 app.use(authRouter);
+app.use(postRouter);
 
 app.get("/*", (req: Request, res: Response) => {
   throw new NotFoundError("Page not found");

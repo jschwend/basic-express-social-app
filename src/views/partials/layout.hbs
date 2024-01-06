@@ -9,6 +9,23 @@
 </head>
 <body>
   <main class="container">
+    <nav class="nav">
+      <div class="nav__item">
+        <h1>
+          <a href="/">Social App</a>
+        </h1>
+      </div>
+      <div class="nav__item">
+      {{#if user}}
+        <span>Welcome back {{ user.username}}!</span>
+        <a href="/profile/{{user.uuid}}">Profile</a>
+        <a href="/logout">Logout</a>
+      {{else}}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      {{/if}}
+      </div>
+    </nav>
     {{> @partial-block }}
   </main>
 </body>

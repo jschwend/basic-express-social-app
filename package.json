@@ -37,6 +37,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "hbs": "^4.2.0",
+    "human-time": "^0.0.2",
     "sqlite3": "^5.1.7",
     "uuid": "^9.0.1"
   }

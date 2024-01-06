@@ -1,4 +1,7 @@
 :root {
+  --color-primary: #575787;
+  --color-secondary: #2e2e57;
+  --color-tertiary: #3c3c6e;
   --color-white: #fff;
   --color-off-white: #f1f1f1c7;
   --color-dark: #171522;
@@ -7,6 +10,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
 
+  --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
@@ -20,4 +24,110 @@ body {
 
 a, a:visited, a:hover, a:active {
   color: inherit;
+}
+
+
+@media screen and (min-width: 576px) {
+  .container {
+    max-width: var(--breakpoint-sm);
+  }
+}
+@media screen and (min-width: 992px) {
+  .container {
+    max-width: var(--breakpoint-md);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: var(--breakpoint-lg);
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+
+.post__form {
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: row;
+  margin-bottom: var(--spacing-md);
+}
+
+.post__form__label {
+  outline: none !important;
+  flex: 1;
+}
+
+.post__form__input {
+  outline: none !important;
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 0px;
+  background: var(--color-secondary);
+  color: var(--color-white);
+}
+
+::placeholder {
+  color: var( --color-off-white);
+  opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Edge 12 -18 */
+  color: var( --color-off-white);
+}
+
+.post__form__button {
+  outline: none !important;
+  padding: var(--spacing-sm);
+  border: 0px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+
+.post {
+  align-items: start;
+  background-color: var(--color-secondary);
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+  padding: var(--spacing-md);
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.post__content {
+  margin: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+.post__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  gap: var(--spacing-xxs);
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  gap: var(--spacing-xxs);
+}
+
+.nav__item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
