@@ -37,7 +37,7 @@ app.use(
 app.use(flash());
 
 app.use((req, res, next) => {
-  res.locals.user = req.session.user;
+  res.locals.loggedInUser = req.session.user;
   next();
 });
 

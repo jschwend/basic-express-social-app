@@ -1,21 +1,27 @@
 {{#> layout }}
-  <h2>Login</h2>
+<div class="card auth__card">
+    <h2 class="card__title">Login</h2>
   <form action="/login" method="post">
     <div>
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" />
+      <label class="form__label" for="username">Username</label>
+      <input class="form__input" type="text" name="username" id="username" />
     </div>
     <div>
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" />
-    </div>
-    <div>
-      <input type="submit" value="Login" />
+      <label class="form__label" for="password">Password</label>
+      <input class="form__input" type="password" name="password" id="password" />
     </div>
     {{#if error}}
-      <div>
+      <div class="form__error">
         {{ error }}
       </div>
     {{/if}}
-  </form>
+    <div class="form__footer">
+      <button class="form__button" type="submit">Login</button>
+
+      <div>
+        Not registered? <a href="/register">Click Here</a>
+      </div>
+    </div>
+   </form>
+</div>
 {{/layout}}

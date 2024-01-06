@@ -16,9 +16,9 @@
         </h1>
       </div>
       <div class="nav__item">
-      {{#if user}}
-        <span>Welcome back {{ user.username}}!</span>
-        <a href="/profile/{{user.uuid}}">Profile</a>
+      {{#if loggedInUser}}
+        <span>Welcome back {{ loggedInUser.username}}!</span>
+        <a href="/profile/{{loggedInUser.uuid}}">Profile</a>
         <a href="/logout">Logout</a>
       {{else}}
         <a href="/login">Login</a>

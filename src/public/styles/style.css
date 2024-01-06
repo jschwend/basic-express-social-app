@@ -14,6 +14,7 @@
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
 }
 
 body {
@@ -130,4 +131,61 @@ a, a:visited, a:hover, a:active {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.card {
+  background-color: var(--color-secondary);
+  border-radius: 0.25rem;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+}
+
+.auth__card {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.card__title {
+  margin: 0;
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.form__label {
+  outline: none !important;
+}
+
+.form__input {
+  outline: none !important;
+  width: calc(100% - 2 * var(--spacing-sm));
+  padding: var(--spacing-sm);
+  border: 0px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  margin-top: var(--spacing-xxs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.form__button {
+  outline: none !important;
+  padding: var(--spacing-sm);
+  border: 0px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.form__error {
+  margin-bottom: var(--spacing-sm);
+}
+
+.form__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xxs);
 }

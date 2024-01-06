@@ -1,11 +1,9 @@
 {{#> layout }}
-  {{#if user}}
+  {{#if loggedInUser}}
     {{> createPost }}
 
   {{else}}
-    <h2>Welcome to the app</h2>
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+    <p>Login or register to create a post</p>
   {{/if}}
 
   <h3>Posts</h3>
