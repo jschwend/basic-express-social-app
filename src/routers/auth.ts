@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { createUser, getUserByUuid, loginUser } from "../services/auth";
 import { NotFoundError } from "../errors";
 import { getPostsForUser } from "../services/post";
@@ -92,16 +92,21 @@ router.get("/logout", (req: Request, res: Response) => {
   });
 });
 
-router.get("/profile/:id", async (req: Request, res: Response) => {
-  const user = await getUserByUuid(req.params.id);
+router.get(
+  "/profile/:id",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const user = await getUserByUuid(req.params.id);
 
-  if (!user) {
-    throw new NotFoundError("User not found");
+    if (!user) {
+      const error = new NotFoundError("User not found");
+      next(error);
+      return;
+    }
+
+    const posts = await getPostsForUser(user.uuid);
+
+    res.render("profile", { user, posts });
   }
-
-  const posts = await getPostsForUser(user.uuid);
-
-  res.render("profile", { user, posts });
-});
+);
 
 export default router;

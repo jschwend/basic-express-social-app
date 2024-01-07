@@ -59,6 +59,7 @@ app.use(function (
   res: Response,
   next: NextFunction
 ) {
+  console.log("here", err);
   if (err instanceof NotFoundError) {
     res.status(404).render("error", { status: 404, message: err.message });
     return;

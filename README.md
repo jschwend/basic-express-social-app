@@ -1,4 +1,4 @@
-# Simple Express Social Media Web App
+# Basic Express Social Media Web App (Typescript)
 
 This is a simple Express web application that serves as a basic social media platform. The primary features include user authentication, posting messages, and viewing user profiles. The project purposefully avoided using extra libraries such as an ORM or Validation to keep things more barebones, in comparison to the [extended version of this project](https://github.com/kcoulsy/extended-node-social-app) which has more features.
 
